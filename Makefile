@@ -1,3 +1,6 @@
+format:
+	python -m black 2021/
+
 run:
 	python $(year)/day$(day)/main.py
 
