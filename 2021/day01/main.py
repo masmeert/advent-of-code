@@ -2,8 +2,8 @@ with open("2021/day01/input.txt") as f:
     DATA = [int(x) for x in f.readlines()]
 
 
-def part_one(data=DATA):
-    return sum(data[x] > data[x - 1] for x in range(1, len(data)))
+def part_one():
+    return sum(DATA[x] > DATA[x - 1] for x in range(1, len(DATA)))
 
 
 def part_two():
