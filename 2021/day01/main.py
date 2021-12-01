@@ -1,4 +1,6 @@
-DATA = [int(x) for x in open("2021/day01/input.txt").readlines()]
+with open("2021/day01/input.txt") as f:
+    DATA = [int(x) for x in f.readlines()]
+
 
 
 def part_one(data=DATA):
