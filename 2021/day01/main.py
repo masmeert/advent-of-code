@@ -7,9 +7,7 @@ def part_one(data=DATA):
 
 
 def part_two():
-    return part_one(
-        [DATA[x] + DATA[x - 1] + DATA[x - 2] for x in range(2, len(DATA))]
-    )
+    return sum(DATA[x] > DATA[x - 3] for x in range(2, len(DATA)))
 
 
 print(part_one())
