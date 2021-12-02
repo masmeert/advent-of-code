@@ -1,8 +1,7 @@
 from operator import mul
 
 with open("2021/day02/input.txt") as f:
-    splitLine = lambda x: [x[: x.index(" ")], int(x[x.index(" ") + 1 :])]
-    DATA = [splitLine(x.strip()) for x in f.readlines()]
+    DATA = [(move, int(value)) for move, value in map(str.split, f)]
 
 
 def part_one():
@@ -25,5 +24,6 @@ def part_two():
     return depth * horizontal
 
 
+print(DATA)
 print(part_one())
 print(part_two())
