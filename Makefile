@@ -1,5 +1,5 @@
 format:
-	python -m black 2021/
+	python -m black $(year)/
 
 run:
 	python $(year)/day$(day)/main.py
