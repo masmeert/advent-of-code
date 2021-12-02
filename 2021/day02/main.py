@@ -1,25 +1,24 @@
 from operator import mul
 
 with open("2021/day02/input.txt") as f:
-    DATA = [x.strip() for x in f.readlines()]
+    DATA = [x.strip().split(" ") for x in f.readlines()]
 
 
 def part_one():
     depth = lambda x, y: -x if y == "up" else x
     return mul(
         sum(
-            depth(int(x[x.index(" ") + 1 :]), x[: x.index(" ")])
+            depth(int(x[1]), x[0])
             for x in DATA
-            if x[: x.index(" ")] in ("up, down")
+            if x[0] in ("up, down")
         ),
-        sum(int(x[x.index(" ") + 1 :]) for x in DATA if x[: x.index(" ")] == "forward"),
+        sum(int(x[1]) for x in DATA if x[0] == "forward"),
     )
 
 
 def part_two():
     aim = depth = horizontal = 0
     for x in DATA:
-        x = x.split(" ")
         x[1] = int(x[1])
         if x[0] == "up":
             aim -= x[1]
