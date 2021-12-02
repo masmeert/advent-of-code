@@ -1,7 +1,7 @@
 from operator import mul
 
 with open("2021/day02/input.txt") as f:
-    DATA = [x.replace("\n", "") for x in f.readlines()]
+    DATA = [x.strip() for x in f.readlines()]
 
 
 def part_one():
