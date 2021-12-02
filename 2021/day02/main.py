@@ -4,8 +4,10 @@ with open("2021/day02/input.txt") as f:
     DATA = [x.strip() for x in f.readlines()]
 
 
+depth = lambda x, y: -x if y == "up" else x
+
+
 def part_one():
-    depth = lambda x,y : -x if y == "up" else x 
     return mul(
         sum(
             depth(int(x[x.index(" ") + 1 :]), x[: x.index(" ")])
