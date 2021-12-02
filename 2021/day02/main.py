@@ -7,11 +7,7 @@ with open("2021/day02/input.txt") as f:
 
 def part_one():
     return mul(
-        sum(
-            x[1] if x[0] == "down" else -x[1]
-            for x in DATA
-            if x[0] in ("up, down")
-        ),
+        sum(x[1] if x[0] == "down" else -x[1] for x in DATA if x[0] in ("up, down")),
         sum(x[1] for x in DATA if x[0] == "forward"),
     )
 
