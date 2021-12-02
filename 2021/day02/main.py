@@ -5,11 +5,10 @@ with open("2021/day02/input.txt") as f:
 
 
 def part_one():
+    depth = lambda x,y : -x if y == "up" else x 
     return mul(
         sum(
-            int(x[x.index(" ") + 1 :])
-            if x[: x.index(" ")] == "down"
-            else -int(x[x.index(" ") + 1 :])
+            depth(int(x[x.index(" ") + 1 :]), x[: x.index(" ")])
             for x in DATA
             if x[: x.index(" ")] in ("up, down")
         ),
