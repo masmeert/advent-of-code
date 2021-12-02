@@ -16,9 +16,9 @@ def dive(data: List[Tuple[str, int]], part: int) -> int:
     """
     fwd = depth = aim = 0
     for x in data:
-        if x[0] == "forward":
+        if x[0] == "f":
             fwd += x[1]
             depth += x[1] * aim
         else:
-            aim += -x[1] if x[0] == "up" else x[1]
+            aim += -x[1] if x[0] == "u" else x[1]
     return fwd * (depth if part == 2 else aim)
