@@ -7,8 +7,8 @@ N = len(DATA[0])
 
 def part_one():
     gamma = epsilon = ""
-    for x in range(N):
-        c = Counter(bits[x] for bits in DATA)
+    for i in range(N):
+        c = Counter(bits[i] for bits in DATA)
         gamma += c.most_common()[0][0]
         epsilon += c.most_common()[1][0]
     return int(gamma, 2) * int(epsilon, 2)
