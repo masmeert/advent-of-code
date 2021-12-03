@@ -4,3 +4,7 @@
 
 - [2020](https://github.com/masmeert/advent-of-code/blob/master/2020)
 - [2021](https://github.com/masmeert/advent-of-code/blob/master/2021)
+
+## Credits
+
+- [scarvalhojr's ](https://github.com/scarvalhojr)[aoc-cli](https://github.com/scarvalhojr/aoc-cli) for the Makefile commands
