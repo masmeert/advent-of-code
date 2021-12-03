@@ -1,4 +1,3 @@
-from utils import mul
 from collections import Counter
 
 with open("2021/inputs/day03") as f:
@@ -15,23 +14,18 @@ def part_one():
     return int(gamma, 2) * int(epsilon, 2)
 
 
-def part_two():
-    results = []
-    for bit in range(2):
-        valid = DATA
-        for i in range(N):
-            counts = [[], []]
-            for bits in valid:
-                counts[int(bits[i])].append(bits)
-            if len(counts[1]) >= len(counts[0]):
-                valid = counts[1 if bit else 0]
-            else:
-                valid = counts[0 if bit else 1]
-            if len(valid) == 1:
-                break
-        results.append(valid[0])
-    return mul(int(result, 2) for result in results)
+def part_two(o2, i=0, data=DATA):
+    c = Counter(bits[i] for bits in data)
+    common = c.most_common()
+    if common[0][1] != common[1][1]:
+        bit = common[0][0] if o2 else common[1][0]
+    else:
+        bit = "1" if o2 else "0"
+    valid = [bits for bits in data if bits[i] == bit]
+    if len(valid) == 1:
+        return valid[0]
+    return part_two(o2, i + 1, valid)
 
 
 print(part_one())
-print(part_two())
+print(int(part_two(True), 2) * int(part_two(False), 2))
