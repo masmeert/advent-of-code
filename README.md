@@ -7,4 +7,4 @@
 
 ## Credits
 
-- [scarvalhojr's ](https://github.com/scarvalhojr)[aoc-cli](https://github.com/scarvalhojr/aoc-cli) for the Makefile commands
+- [scarvalhojr's aoc-cli](https://github.com/scarvalhojr/aoc-cli) for the Makefile commands
