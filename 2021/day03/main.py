@@ -23,15 +23,14 @@ def part_two():
             counts = [[], []]
             for bit in valid:
                 counts[int(bit[i])].append(bit)
-            valid = (
-                counts[1 if boolean else 0]
-                if len(counts[1]) >= len(counts[0])
-                else counts[0 if boolean else 1]
-            )
+            if len(counts[1]) >= len(counts[0]):
+                valid = counts[1 if boolean else 0]
+            else:
+                valid = counts[0 if boolean else 1]
             if len(valid) == 1:
                 break
         results.append(valid[0])
-    return math.prod(int("".join(result), 2) for result in results)
+    return math.prod(int(result, 2) for result in results)
 
 
 print(part_one())
