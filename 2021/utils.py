@@ -1,9 +1,8 @@
-import operator
-import functools
 import itertools
 import heapq
 import numpy
-from typing import List, Optional, Set, Tuple
+import math
+from typing import List, Optional, Tuple
 
 
 FIGURES = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
@@ -22,7 +21,7 @@ def mul(l: List[int]) -> int:
     Returns:
         int: result
     """
-    return functools.reduce(operator.mul, l, 0)
+    return math.prod(l)
 
 
 # * STRINGS/ARRAYS
