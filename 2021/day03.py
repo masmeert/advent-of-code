@@ -14,7 +14,7 @@ def part_one():
             c[bits[x]] += 1
         gamma += c.most_common()[0][0]
         epsilon += c.most_common()[1][0]
-    return int(gamma, 2) * int(epsilon, 2) 
+    return int(gamma, 2) * int(epsilon, 2)
 
 
 def part_two():
