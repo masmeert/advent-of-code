@@ -1,4 +1,4 @@
-with open("2021/day01/input.txt") as f:
+with open("2021/day01/input") as f:
     DATA = [int(x) for x in f.readlines()]
 
 

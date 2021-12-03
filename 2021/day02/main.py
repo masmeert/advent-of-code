@@ -1,6 +1,6 @@
 from operator import mul
 
-with open("2021/day02/input.txt") as f:
+with open("2021/day02/input") as f:
     DATA = [(move[0], int(value)) for move, value in map(str.split, f)]
 
 

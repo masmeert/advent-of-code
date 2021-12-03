@@ -1,6 +1,6 @@
 import math
 
-with open("2021/day03/input.txt") as f:
+with open("2021/day03/input") as f:
     DATA = [x.strip() for x in f.readlines()]
 
 
