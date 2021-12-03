@@ -22,9 +22,9 @@ def part_two(o2: bool, i: int = 0, data: List[str] = DATA) -> Union[List[str], i
     c = Counter(bits[i] for bits in data)
     common = c.most_common()
     bit = "1" if o2 else "0"
-    
+
     if common[0][1] != common[1][1]:
-        bit = common[0][0] if o2 else common[1][0]        
+        bit = common[0][0] if o2 else common[1][0]
 
     valid = [bits for bits in data if bits[i] == bit]
 
