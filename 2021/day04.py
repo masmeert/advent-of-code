@@ -21,9 +21,18 @@ def solve() -> List[int]:
         for board in BOARDS:
             transpose = list(zip(*board))
             for i, line in enumerate(board):
-                if (all(num in seen for num in line) or all(num in seen for num in transpose[i])) and board not in won:
-                        won.append(board)
-                        scores.append(sum(sum(num for num in line if num not in seen) for line in board) * seen[-1])
+                if (
+                    all(num in seen for num in line)
+                    or all(num in seen for num in transpose[i])
+                ) and board not in won:
+                    won.append(board)
+                    scores.append(
+                        sum(
+                            sum(num for num in line if num not in seen)
+                            for line in board
+                        )
+                        * seen[-1]
+                    )
     return scores
 
 
