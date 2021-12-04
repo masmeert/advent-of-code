@@ -13,9 +13,7 @@ with open("2021/inputs/day04.txt") as f:
 
 
 def solve() -> List[int]:
-    seen = []
-    won = []
-    scores = []
+    seen, won, scores = [], [], []
     for n in NUMS:
         seen.append(n)
         for board in BOARDS:
