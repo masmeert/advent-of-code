@@ -29,9 +29,4 @@ def solve() -> List[int]:
                         )
                         * n
                     )
-    return scores
-
-
-scores = solve()
-print("part1:", scores[0])
-print("part2:", scores[-1])
+    return won
