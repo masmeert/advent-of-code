@@ -11,8 +11,8 @@ def part_one():
 
 def part_two():
     checkers = {
-            "byr": lambda x: return 1920 <= int(x) <= 2002
-            "iyr": lambda x: return 2010 <= int(x) <= 2020
+            "byr": lambda x: 1920 <= int(x) <= 2002,
+            "iyr": lambda x: 2010 <= int(x) <= 2020,
     }
 
 
