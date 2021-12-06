@@ -1,12 +1,8 @@
-from typing import Dict
+from collections import Counter
 
-FISHES = {i: 0 for i in range(9)}
-with open("2021/inputs/day06.txt") as f:
-    for age in map(int, f.readline().split(",")):
-        FISHES[age] += 1
-
-
-def simulate_fishes(days: int, fishes: Dict[str, int] = FISHES) -> int:
+def simulate_fishes(days: int) -> int:
+    with open("2021/inputs/day06.txt") as f:
+        fishes = Counter(list(map(int, f.readline().split(",")))) 
     for _ in range(days):
         pregnant = fishes[0]
         for age in range(8):
@@ -16,5 +12,6 @@ def simulate_fishes(days: int, fishes: Dict[str, int] = FISHES) -> int:
     return sum(fishes.values())
 
 
-# print(simulate_fishes(80))
+print(simulate_fishes(80))
 print(simulate_fishes(256))
+
