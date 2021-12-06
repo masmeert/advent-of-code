@@ -1,8 +1,5 @@
 format:
-	python -m black $(y)/
-
-run:
-	python $(y)/day$(d).py
+	python -m black ./
 
 create:
 	aoc -d $(d) -f $(y)/inputs/day$(d).txt -y $(y) download
