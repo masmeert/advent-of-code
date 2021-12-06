@@ -5,12 +5,12 @@ TEMPLATE = f"""with open("{YEAR}/inputs/day{DAY}.txt") as f:
     DATA = [x.strip() for x in f.readlines()]
 
 
-def part_one():
-    return None
+def part_one() -> int:
+    return -1
 
 
-def part_two():
-    return None
+def part_two() -> int:
+    return -1
 
 
 print(part_one())
