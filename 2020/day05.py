@@ -9,11 +9,11 @@ with open("2020/inputs/day05.txt") as f:
     )
 
 
-def part_one():
+def part_one() -> int:
     return max(DATA)
 
 
-def part_two():
+def part_two() -> int:
     return re.sub("[{}]", "", str(set(range(min(DATA), max(DATA))) - DATA))
 
 
