@@ -2,9 +2,8 @@ from typing import Dict
 
 FISHES = {i: 0 for i in range(9)}
 with open("2021/inputs/day06.txt") as f:
-    for line in f:
-        for age in map(int, line.split(",")):
-            FISHES[age] += 1
+    for age in map(int, f.readline().split(",")):
+        FISHES[age] += 1
 
 
 def simulate_fishes(days: int, fishes: Dict[str, int] = FISHES) -> int:
