@@ -1,3 +1,5 @@
+import re
+
 with open("2020/inputs/day04") as f:
     DATA = [
         {sub[0]: sub[1] for sub in line if sub[0] != "cid"}
@@ -6,14 +8,35 @@ with open("2020/inputs/day04") as f:
         ]
     ]
 
+
 def part_one():
-    return sum(1 for x in DATA if len(x.keys()) == 7)
+    return sum(len(x.keys()) == 7 for x in DATA)
+
 
 def part_two():
+    valid = 0
     checkers = {
-            "byr": lambda x: 1920 <= int(x) <= 2002,
-            "iyr": lambda x: 2010 <= int(x) <= 2020,
+        "byr": lambda x: 1920 <= int(x) <= 2002,
+        "iyr": lambda x: 2010 <= int(x) <= 2020,
+        "eyr": lambda x: 2020 <= int(x) <= 2030,
+        "hgt": lambda x: 150 <= int(x[:-2]) <= 193
+        if x[-2:] == "cm"
+        else 59 <= int(x[:-2]) <= 76
+        if x[-2:] == "in"
+        else False,
+        "hcl": lambda x: re.search("^#(\d|[a-f]){6}$", x),
+        "ecl": lambda x: x in {"amb", "blu", "brn", "gry", "grn", "hzl", "oth"},
+        "pid": lambda x: re.search("^\d{9}$", x),
     }
+    for x in DATA:
+        if len(x.keys()) != 7:
+            continue
+        for k, v in x.items():
+            if not checkers[k](v):
+                break
+        else:
+            valid += 1
+    return valid
 
 
 print(part_one())
