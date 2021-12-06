@@ -4,7 +4,8 @@ with open("2021/inputs/day05.txt") as f:
     LINES = [
         [tuple(map(int, coords.split(","))) for coords in line.strip().split(" -> ")]
         for line in f.readlines()
-    ] # [(x1, y1),(x2, y2)]
+    ]  # [(x1, y1),(x2, y2)]
+
 
 def count_points(part2: bool) -> int:
     points = Counter()
