@@ -13,5 +13,6 @@ def simulate_fishes(days: int) -> int:
         fishes[6] += pregnant
     return sum(fishes.values())
 
+
 print(simulate_fishes(80))
 print(simulate_fishes(256))
