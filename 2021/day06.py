@@ -2,14 +2,11 @@ from collections import Counter
 
 
 def simulate_fishes(days: int) -> int:
-    with open("2021/inputs/day06.txt") as f:
-        fishes = Counter(list(map(int, f.readline().split(","))))
-    for _ in range(days):
-        pregnant = fishes[0]
-        for age in range(8):
-            fishes[age] = fishes[age + 1]
-        fishes[8] = pregnant
-        fishes[6] += pregnant
+    fishes = Counter(
+        int(x) for x in open("2021/inputs/day06.txt").read().strip().split(",")
+    )
+    for d in range(days):
+        fishes[(d + 7) % 9] += fishes[d % 9]
     return sum(fishes.values())
 
 
