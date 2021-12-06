@@ -9,11 +9,11 @@ with open("2021/inputs/day06.txt") as f:
 
 def simulate_fishes(days: int, fishes: Dict[str, int] = FISHES) -> int:
     for _ in range(days):
-        t = fishes[0]
-        for j in range(0, 8):
-            fishes[j] = fishes[j + 1]
-        fishes[8] = t
-        fishes[6] += t
+        pregnant = fishes[0]
+        for age in range(0, 8):
+            fishes[age] = fishes[age + 1]
+        fishes[8] = pregnant
+        fishes[6] += pregnant
     return sum(fishes.values())
 
 
