@@ -1,8 +1,9 @@
 from collections import Counter
 
+
 def simulate_fishes(days: int) -> int:
     with open("2021/inputs/day06.txt") as f:
-        fishes = Counter(list(map(int, f.readline().split(",")))) 
+        fishes = Counter(list(map(int, f.readline().split(","))))
     for _ in range(days):
         pregnant = fishes[0]
         for age in range(8):
@@ -14,4 +15,3 @@ def simulate_fishes(days: int) -> int:
 
 print(simulate_fishes(80))
 print(simulate_fishes(256))
-
