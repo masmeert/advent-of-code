@@ -144,6 +144,8 @@ def gaussian_sum(x: int) -> int:
 
     Returns:
         int: the gaussian sum
+
+    https://letstalkscience.ca/educational-resources/backgrounders/gauss-summation
     """
     return x * (x + 1) // 2
 
