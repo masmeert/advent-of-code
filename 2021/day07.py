@@ -9,7 +9,7 @@ def part_one() -> int:
 
 
 def part_two() -> int:
-    return sum(gaussian_sum(abs(x - sum(DATA) // len(DATA))) for x in DATA)
+    return min(sum(gaussian_sum(abs(n - x)) for n in DATA) for x in range(max(DATA)))
 
 
 print(part_one())
