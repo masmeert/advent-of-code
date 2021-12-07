@@ -136,6 +136,18 @@ def get_fist_unique(l: List[any]) -> int:
 
 
 # * MATH
+def gaussian_sum(x: int) -> int:
+    """Returns the gaussian summation for x
+
+    Args:
+        x (int): the num
+
+    Returns:
+        int: the gaussian sum
+    """
+    return x * (x + 1) // 2
+
+
 def _eratosthenes(n: int) -> List[int]:
     """Computes n primes
     http://stackoverflow.com/a/3941967/239076
