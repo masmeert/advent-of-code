@@ -1,10 +1,8 @@
 GROUPS = [group for group in open("2020/inputs/day06.txt").read().split("\n\n")]
 
+
 def part_one() -> int:
-    return sum(
-        len(set(group.replace("\n", "")))
-        for group in GROUPS
-    )
+    return sum(len(set(group.replace("\n", ""))) for group in GROUPS)
 
 
 def part_two() -> int:
