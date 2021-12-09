@@ -9,7 +9,7 @@ def part_one() -> int:
 
 def part_two() -> int:
     """
-    https://www.reddit.com/r/adventofcode/comments/rbj87a/comment/hnoyy04/?utm_source=share&utm_medium=web2x&context=3
+    https://www.reddit.com/r/adventofcode/comments/rbj87a/comment/hnoyy04/
     """
     s = 0
     for line in DATA:
