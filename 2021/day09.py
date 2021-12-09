@@ -1,4 +1,4 @@
-from typing import Set, Tuple, Union
+from typing import List, Set, Tuple, Union
 from utils import mul
 
 with open("2021/inputs/day09.txt") as f:
@@ -16,18 +16,22 @@ def adjacent(i: int, j: int) -> Tuple[Union[float, int]]:
     )
 
 
-def part_one() -> int:
-    lows = 0
+def get_lows() -> List[Tuple[int]]:
+    lows = []
     for i in range(HEIGHT):
         for j in range(WIDTH):
             adj = adjacent(i, j)
             if int(DATA[i][j]) < min(adj):
-                lows += 1 + int(DATA[i][j])
-    return lows
+                lows.append((i,j))
+    return lows    
+
+
+def part_one() -> int:
+    return sum(1 + int(DATA[low[0]][low[1]]) for low in get_lows())
 
 
 def part_two() -> int:
-    pass
+    return -1
 
 
 print(part_one())
