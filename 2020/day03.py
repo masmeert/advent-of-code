@@ -1,4 +1,4 @@
-from utils import mul
+from utils import prod
 
 with open("2020/inputs/day03") as f:
     DATA = [x.strip() for x in f.readlines()]
@@ -19,7 +19,7 @@ def count_trees(fwd: int, height: int) -> int:
 
 print(count_trees(3, 1))
 print(
-    mul(
+    prod(
         [
             count_trees(1, 1),
             count_trees(3, 1),

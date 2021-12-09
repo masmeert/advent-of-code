@@ -12,7 +12,7 @@ CONSONANTS = tuple(x for x in LETTERS if x not in VOWELS)
 
 
 # * OPERATORS
-def mul(l: List[int]) -> int:
+def prod(l: List[int]) -> int:
     """sum() but multiplication
 
     Args:

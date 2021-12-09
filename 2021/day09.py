@@ -1,5 +1,5 @@
-from typing import List, Set, Tuple, Union
-from utils import mul
+from typing import List, Tuple, Union
+from utils import prod
 
 with open("2021/inputs/day09.txt") as f:
     DATA = [x.strip() for x in f.readlines()]
@@ -32,7 +32,6 @@ def part_one() -> int:
 
 def part_two() -> int:
     return -1
-
 
 print(part_one())
 print(part_two())
