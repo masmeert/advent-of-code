@@ -1,32 +1,24 @@
-from typing import List, Tuple
+from typing import List, Set
 
-with open("2021/inputs/day09.txt") as f:
-    DATA = [x.strip() for x in f.readlines()]
-HEIGHT = len(DATA)
-WIDTH = len(DATA[0])
-
-
-def adjacent(i: int, j: int) -> Tuple[float | int]:
-    return (
-        float("inf") if i - 1 < 0 else int(DATA[i - 1][j]),
-        float("inf") if i + 1 >= HEIGHT else int(DATA[i + 1][j]),
-        float("inf") if j - 1 < 0 else int(DATA[i][j - 1]),
-        float("inf") if j + 1 >= WIDTH else int(DATA[i][j + 1]),
-    )
+DATA = [x.strip() for x in open("2021/inputs/day09.txt").readlines()]
+R, C = len(DATA), len(DATA[0])
+DATA = {(k // C, k % C): int(DATA[k // C][k % C]) for k in range(R * C)}
 
 
-def get_lows() -> List[Tuple[int]]:
-    lows = []
-    for i in range(HEIGHT):
-        for j in range(WIDTH):
-            adj = adjacent(i, j)
-            if int(DATA[i][j]) < min(adj):
-                lows.append((i, j))
-    return lows
+def adjacents(coord: List[int]) -> Set[int]:
+    r, c = coord
+    return {
+        DATA.get((r + 1, c), float("inf")),
+        DATA.get((r - 1, c), float("inf")),
+        DATA.get((r, c + 1), float("inf")),
+        DATA.get((r, c - 1), float("inf")),
+    }
 
 
 def part_one() -> int:
-    return sum(1 + int(DATA[low[0]][low[1]]) for low in get_lows())
+    return sum(
+        1 + height for coords, height in DATA.items() if height < min(adjacents(coords))
+    )
 
 
 def part_two() -> int:
@@ -34,4 +26,3 @@ def part_two() -> int:
 
 
 print(part_one())
-print(part_two())
