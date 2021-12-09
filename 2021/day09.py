@@ -1,4 +1,4 @@
-from typing import List, Tuple, Union
+from typing import List, Tuple
 
 with open("2021/inputs/day09.txt") as f:
     DATA = [x.strip() for x in f.readlines()]
@@ -6,7 +6,7 @@ HEIGHT = len(DATA)
 WIDTH = len(DATA[0])
 
 
-def adjacent(i: int, j: int) -> Tuple[Union[float, int]]:
+def adjacent(i: int, j: int) -> Tuple[float | int]:
     return (
         float("inf") if i - 1 < 0 else int(DATA[i - 1][j]),
         float("inf") if i + 1 >= HEIGHT else int(DATA[i + 1][j]),
