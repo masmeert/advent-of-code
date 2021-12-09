@@ -1,4 +1,4 @@
-from typing import List
+from typing import Dict, List, Tuple, Union
 from collections import deque
 from math import prod
 
@@ -7,7 +7,7 @@ R, C = len(DATA), len(DATA[0])
 DATA = {(k // C, k % C): int(DATA[k // C][k % C]) for k in range(R * C)}
 
 
-def adjacents(coord: List[int]) -> List[int]:
+def adjacents(coord: List[int]) -> Dict[Tuple[int], Union[int, float]]:
     r, c = coord
     return {
         (r + 1, c): DATA.get((r + 1, c), float("inf")),
@@ -19,30 +19,33 @@ def adjacents(coord: List[int]) -> List[int]:
 
 def part_one() -> int:
     return sum(
-        1 + height for coords, height in DATA.items() if height < min(adjacents(coords).values())
+        1 + height
+        for coords, height in DATA.items()
+        if height < min(adjacents(coords).values())
     )
 
 
 def part_two() -> int:
     sizes = []
     seen = set()
-    for k in range(R*C):
-        r,c = (k//C, k%C)
-        if (r,c) not in seen and DATA.get((r,c)) != 9:
+    for k in range(R * C):
+        r, c = (k // C, k % C)
+        if (r, c) not in seen and DATA.get((r, c)) != 9:
             size = 0
             stack = deque()
-            stack.append((r,c))
+            stack.append((r, c))
             while stack:
-                r,c = stack.popleft()
-                if (r,c) in seen:
+                r, c = stack.popleft()
+                if (r, c) in seen:
                     continue
-                seen.add((r,c))
+                seen.add((r, c))
                 size += 1
-                for coords, height in adjacents((r,c)).items():
+                for coords, height in adjacents((r, c)).items():
                     if height < 9:
                         stack.append(coords)
             sizes.append(size)
     return prod(sorted(sizes)[-3:])
+
 
 print(part_one())
 print(part_two())
