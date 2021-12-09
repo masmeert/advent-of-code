@@ -1,4 +1,4 @@
-from utils import prod
+from ..utils.advent import prod
 
 with open("2020/inputs/day03") as f:
     DATA = [x.strip() for x in f.readlines()]

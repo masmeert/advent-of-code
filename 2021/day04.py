@@ -1,4 +1,3 @@
-import timeit
 from typing import List
 
 with open("2021/inputs/day04.txt") as f:

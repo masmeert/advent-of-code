@@ -1,5 +1,4 @@
 from typing import List, Tuple, Union
-from utils import prod
 
 with open("2021/inputs/day09.txt") as f:
     DATA = [x.strip() for x in f.readlines()]
@@ -22,8 +21,8 @@ def get_lows() -> List[Tuple[int]]:
         for j in range(WIDTH):
             adj = adjacent(i, j)
             if int(DATA[i][j]) < min(adj):
-                lows.append((i,j))
-    return lows    
+                lows.append((i, j))
+    return lows
 
 
 def part_one() -> int:
@@ -32,6 +31,7 @@ def part_one() -> int:
 
 def part_two() -> int:
     return -1
+
 
 print(part_one())
 print(part_two())

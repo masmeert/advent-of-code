@@ -1,5 +1,3 @@
-from operator import mul
-
 with open("2021/inputs/day02") as f:
     DATA = [(move[0], int(value)) for move, value in map(str.split, f)]
 

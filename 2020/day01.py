@@ -1,4 +1,4 @@
-from utils import find_combination, prod
+from ..utils.advent import find_combination, prod
 
 with open("2020/inputs/day01") as f:
     DATA = [int(x) for x in f.readlines()]

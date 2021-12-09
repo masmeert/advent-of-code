@@ -1,4 +1,5 @@
-GROUPS = [group for group in open("2020/inputs/day06.txt").read().split("\n\n")]
+with open("2020/inputs/day06.txt") as f:
+    GROUPS = [group for group in f.read().split("\n\n")]
 
 
 def part_one() -> int:
