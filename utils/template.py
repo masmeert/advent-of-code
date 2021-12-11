@@ -29,6 +29,7 @@ def create_file(filename: str, content: str):
         raise e
     else:
         f.write(content)
+        f.close()
 
 
 def main() -> None:

@@ -1,7 +1,5 @@
 with open("2021/inputs/day08.txt") as f:
     DATA = [[y.strip() for y in x.strip().split("|")] for x in f.readlines()]
-for x in DATA:
-    print(x)
 
 
 def part_one() -> int:

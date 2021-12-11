@@ -1,7 +1,6 @@
 import itertools
 import heapq
 import numpy
-import math
 from typing import List, Optional, Tuple
 
 
@@ -9,19 +8,6 @@ FIGURES = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
 VOWELS = ("a", "e", "i", "o", "u")
 LETTERS = tuple(x for x in "abcdefghijklmnopqrstuvwxyz")
 CONSONANTS = tuple(x for x in LETTERS if x not in VOWELS)
-
-
-# * OPERATORS
-def prod(l: List[int]) -> int:
-    """sum() but multiplication
-
-    Args:
-        l (List[int]): terms to mul
-
-    Returns:
-        int: result
-    """
-    return math.prod(l)
 
 
 # * STRINGS/ARRAYS

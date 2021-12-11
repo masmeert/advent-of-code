@@ -7,11 +7,11 @@ PAIRS = {
     "]": "[",
     ">": "<",
 }
-SCORES = {")": 3, "]": 57, "}": 1197, ">": 25137}
 OPENING = set(PAIRS.values())
 
 
 def part_one() -> int:
+    scores = {")": 3, "]": 57, "}": 1197, ">": 25137}
     score = 0
     for line in DATA:
         stack = deque()
@@ -21,7 +21,7 @@ def part_one() -> int:
             elif stack[-1] == PAIRS[char]:
                 stack.pop()
             else:
-                score += SCORES[char]
+                score += scores[char]
                 break
     return score
 
