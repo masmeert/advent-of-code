@@ -13,16 +13,13 @@ INS = [
 
 
 def fold(p2: bool, grid: Set[Tuple[int]] = DOTS) -> Set[Tuple[int]]:
+    check = lambda n, n2, a, a2: n2 - (n - n2) if a2 == a and n > n2 else n
     for instruction in INS:
         axis, line = instruction
         line = int(line)
         new_grid = set()
         for x, y in grid:
-            if axis == "x" and x > line:
-                x = line - (x - line)
-            elif axis == "y" and y > line:
-                y = line - (y - line)
-            new_grid.add((x, y))
+            new_grid.add((check(x, line, "x", axis), check(y, line, "y", axis)))
         grid = new_grid
         if not p2:
             return grid
