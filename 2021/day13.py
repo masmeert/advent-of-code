@@ -29,4 +29,4 @@ print(len(fold(False)))
 grid = fold(True)
 xmax, ymax = max(grid)
 for y in range(ymax + 1):
-    print("".join("#" if (x, y) in grid else "." for x in range(xmax + 1)))
+    print("".join("█" if (x, y) in grid else "." for x in range(xmax + 1)))
