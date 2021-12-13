@@ -12,7 +12,7 @@ INS = [
 ]
 
 
-def fold(p2: bool, grid: Set[Tuple[int]] = DOTS) -> int | Set[Tuple[int]]:
+def fold(p2: bool, grid: Set[Tuple[int]] = DOTS) -> Set[Tuple[int]]:
     for instruction in INS:
         axis, line = instruction
         line = int(line)
@@ -25,11 +25,11 @@ def fold(p2: bool, grid: Set[Tuple[int]] = DOTS) -> int | Set[Tuple[int]]:
             new_grid.add((x, y))
         grid = new_grid
         if not p2:
-            return len(grid)
+            return grid
     return grid
 
 
-print(fold(False))
+print(len(fold(False)))
 grid = fold(True)
 xmax, ymax = max(grid)
 for y in range(ymax + 1):
