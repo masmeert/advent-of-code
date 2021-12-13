@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 from typing import Set, Tuple
 
 
