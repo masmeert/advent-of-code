@@ -19,9 +19,9 @@ def fold(p2: bool, grid: Set[Tuple[int]] = DOTS) -> Set[Tuple[int]]:
         new_grid = set()
         for x, y in grid:
             new_grid.add((check(x, line, "x", axis), check(y, line, "y", axis)))
-        grid = new_grid
         if not p2:
             return grid
+        grid = new_grid
     return grid
 
 
