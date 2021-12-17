@@ -14,9 +14,9 @@ def solve(steps: int) -> int:
         new_pairs = Counter()
         for pair, c in pairs.items():
             a, b = pair
-            k = RULES[pair]
-            new_pairs[a + k] += c
-            new_pairs[k + b] += c
+            d = RULES[pair]
+            new_pairs[a + d] += c
+            new_pairs[d + b] += c
         pairs = new_pairs
         if i == steps - 1:
             elements = Counter()
