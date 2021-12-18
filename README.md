@@ -6,4 +6,4 @@
 - [2021](https://github.com/masmeert/advent-of-code/blob/master/2021) (**Python**)
 
 ## Template
-> .template.py $(year) $(day)
+> `.template.py <year> <day>`
