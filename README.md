@@ -2,8 +2,8 @@
 
 ## Solutions
 
-- [2020](https://github.com/masmeert/advent-of-code/blob/master/2020)
-- [2021](https://github.com/masmeert/advent-of-code/blob/master/2021)
+- [2020](https://github.com/masmeert/advent-of-code/blob/master/2020) (**Go**)
+- [2021](https://github.com/masmeert/advent-of-code/blob/master/2021) (**Python**)
 
 ## Template
-> ./utils/template.py $(year) $(day)
+> .template.py $(year) $(day)
