@@ -7,7 +7,7 @@ R, C = len(DATA), len(DATA[0])
 DATA = {(k // C, k % C): int(DATA[k // C][k % C]) for k in range(R * C)}
 
 
-def adjacents(coord: List[int]) -> Dict[Tuple[int], Union[int, float]]:
+def neighbors(coord: List[int]) -> Dict[Tuple[int], Union[int, float]]:
     r, c = coord
     return {
         (r + 1, c): DATA.get((r + 1, c), float("inf")),
@@ -21,7 +21,7 @@ def part_one() -> int:
     return sum(
         1 + height
         for coords, height in DATA.items()
-        if height < min(adjacents(coords).values())
+        if height < min(neighbors(coords).values())
     )
 
 
@@ -40,7 +40,7 @@ def part_two() -> int:
                     continue
                 seen.add((r, c))
                 size += 1
-                for coords, height in adjacents((r, c)).items():
+                for coords, height in neighbors((r, c)).items():
                     if height < 9:
                         stack.append(coords)
             sizes.append(size)

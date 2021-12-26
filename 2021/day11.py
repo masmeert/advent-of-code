@@ -5,18 +5,18 @@ R, C = len(SQUIDS), len(SQUIDS[0])
 SQUIDS = {(k // C, k % C): int(SQUIDS[k // C][k % C]) for k in range(R * C)}
 
 
-def adjacents(r: int, c: int):
+def neighbors(row: int, col: int):
     return filter(
         SQUIDS.get,
         [
-            (r + 1, c + 1),
-            (r + 1, c),
-            (r + 1, c - 1),
-            (r, c + 1),
-            (r - 1, c + 1),
-            (r - 1, c - 1),
-            (r - 1, c),
-            (r, c - 1),
+            (row + 1, col + 1),
+            (row + 1, col),
+            (row + 1, col - 1),
+            (row, col + 1),
+            (row - 1, col + 1),
+            (row - 1, col - 1),
+            (row - 1, col),
+            (row, col - 1),
         ],
     )
 
@@ -32,7 +32,7 @@ for i in count():
         c = to_flash.pop()
         SQUIDS[c] = 0
         flashed += 1
-        for a in adjacents(*c):
+        for a in neighbors(*c):
             SQUIDS[a] += 1
             if SQUIDS[a] > 9:
                 to_flash.add(a)

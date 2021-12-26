@@ -1,7 +1,6 @@
 from utils.math import gaussian_sum
 
-with open("2021/inputs/day07.txt") as f:
-    DATA = sorted([int(x) for x in f.readline().split(",")])
+DATA = sorted([int(x) for x in open("2021/inputs/day07.txt").readline().split(",")])
 
 
 def part_one() -> int:

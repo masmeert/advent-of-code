@@ -1,15 +1,14 @@
 from typing import List
 
-with open("2021/inputs/day04.txt") as f:
-    lines = f.read().split("\n\n")
-    NUMS = map(int, lines[0].split(","))
-    BOARDS = [
-        [
-            [int(x) for x in map(str.strip, row.split(" ")) if x]
-            for row in line.split("\n")
-        ]
-        for line in lines[1:]
+lines = open("2021/inputs/day04.txt").read().split("\n\n")
+NUMS = map(int, lines[0].split(","))
+BOARDS = [
+    [
+        tuple(int(x) for x in map(str.strip, row.split(" ")) if x)
+        for row in line.split("\n")
     ]
+    for line in lines[1:]
+]
 
 
 def solve() -> List[int]:
@@ -17,7 +16,7 @@ def solve() -> List[int]:
     for n in NUMS:
         seen.add(n)
         for board in BOARDS:
-            col_and_rows = board + list(map(set, zip(*board)))
+            col_and_rows = board + list(zip(*board))
             for line in col_and_rows:
                 if all(num in seen for num in line) and board not in won:
                     won.append(board)
@@ -31,6 +30,6 @@ def solve() -> List[int]:
     return scores
 
 
-scores = solve()
-print("part1:", scores[0])
-print("part2:", scores[-1])
+result = solve()
+print(result[0])
+print(result[-1])

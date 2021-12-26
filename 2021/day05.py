@@ -1,10 +1,9 @@
 from collections import Counter
 
-with open("2021/inputs/day05.txt") as f:
-    LINES = [
-        [tuple(map(int, coords.split(","))) for coords in line.strip().split(" -> ")]
-        for line in f.readlines()
-    ]  # [(x1, y1),(x2, y2)]
+LINES = [
+    [tuple(map(int, coords.split(","))) for coords in line.strip().split(" -> ")]
+    for line in open("2021/inputs/day05.txt").readlines()
+]
 
 
 def count_points(part2: bool) -> int:

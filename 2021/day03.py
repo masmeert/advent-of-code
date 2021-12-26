@@ -1,9 +1,7 @@
 from collections import Counter
 from typing import List, Union
 
-with open("2021/inputs/day03") as f:
-    DATA = [x.strip() for x in f.readlines()]
-
+DATA = [x.strip() for x in open("2021/inputs/day03").readlines()]
 N = len(DATA[0])
 
 

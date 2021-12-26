@@ -4,7 +4,7 @@ from typing import Tuple
 X1, X2, Y1, Y2 = 14, 50, -267, -225
 
 
-def launch(v: Tuple[int], p: Tuple[int] = (0, 0)) -> int:
+def launch(v: Tuple[int, int], p: Tuple[int, int] = (0, 0)) -> int:
     vx, vy = v
     px, py = p
     if px > X2 or py < Y1:

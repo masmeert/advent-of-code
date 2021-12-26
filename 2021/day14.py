@@ -22,7 +22,7 @@ def solve(steps: int) -> int:
             elements = Counter()
             for pair, c in pairs.items():
                 elements[pair[0]] += c
-            elements[TEMPLATE[-1]] += 1  # too lazy to find the issue
+            elements[TEMPLATE[-1]] += 1
             mc = elements.most_common()
             return mc[0][1] - mc[-1][1]
 
