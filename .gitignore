@@ -1,7 +1,4 @@
 *inputs/
 *__pycache__/
-*.vscode
 *.idea
 .env
-*input.go
-*.mod
