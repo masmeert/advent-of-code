@@ -1,8 +1,3 @@
-const results = await Deno.readTextFile("./inputs/.txt");
-
-function partOne() {}
-
-function partTwo() {}
-
-console.log(partOne());
-console.log(partTwo());
+const data = await Deno.readTextFile("./inputs/.txt").then((data) => {
+  return data.split("\n");
+});
