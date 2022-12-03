@@ -33,5 +33,5 @@ const data = await Deno.readTextFile("./inputs/03.txt").then((data) => {
   return data.split("\n");
 });
 
-console.log(sum(part1(data).map((letter) => getLetterIndex(letter))));
-console.log(sum(part2(data).map((letter) => getLetterIndex(letter))));
+console.log(sum(part1(data).map(getLetterIndex)));
+console.log(sum(part2(data).map(getLetterIndex)));
