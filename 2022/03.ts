@@ -1,12 +1,13 @@
 import { sum } from "./utils/array.ts";
-import { ALPHABET } from "./utils/string.ts";
+import { intersection } from "./utils/set.ts";
+import { ALPHABET } from "./utils/constant.ts";
 
 function part1(rucksacks: string[]) {
   const letters = [];
   for (const rucksack of rucksacks) {
     const a = rucksack.slice(0, rucksack.length / 2);
     const b = rucksack.slice(rucksack.length / 2);
-    const common = new Set([...new Set(a)].filter((x) => b.includes(x)));
+    const common = intersection(new Set(a), new Set(b));
     const [letter] = common;
     letters.push(letter);
   }
@@ -17,9 +18,7 @@ function part2(rucksacks: string[]) {
   const letters = [];
   for (let x = 0; x < rucksacks.length; x += 3) {
     const [a, b, c] = rucksacks.slice(x, x + 3);
-    const common = new Set(
-      [...new Set(a)].filter((x) => b.includes(x) && c.includes(x))
-    );
+    const common = intersection(new Set(a), new Set(b), new Set(c));
     const [letter] = common;
     letters.push(letter);
   }
