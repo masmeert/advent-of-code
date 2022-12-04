@@ -1,4 +1,4 @@
-import { sum, nums } from "./utils/array.ts";
+import { nums, sum } from "./utils/array.ts";
 
 const highest = await Deno.readTextFile("./inputs/01.txt").then((data) => {
   return data
