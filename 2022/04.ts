@@ -1,11 +1,11 @@
-import { range, isSubset } from "./utils/array.ts";
+import { range } from "./utils/array.ts";
 
 function part1(pairs: number[][][]): number {
   let overlaps = 0;
   for (const pair of pairs) {
-    const elfA = range(pair[0][1] - pair[0][0] + 1, pair[0][0]);
-    const elfB = range(pair[1][1] - pair[1][0] + 1, pair[1][0]);
-    if (isSubset(elfA, elfB) || isSubset(elfB, elfA)) {
+    const [a, b] = pair[0];
+    const [c, d] = pair[1];
+    if ((a <= c && d <= b) || (c <= a && b <= d)) {
       overlaps++;
     }
   }
