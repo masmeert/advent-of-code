@@ -2,5 +2,7 @@
 
 ## Stars
 
-- [2021](https://github.com/masmeert/advent-of-code/blob/master/2021) (**Python**)
-- [2022](https://github.com/masmeert/advent-of-code/blob/master/2022) (**Typescript + Elixir**)
+- [2021 - 36/50 :star:](/2021) 
+<br> <img height=25 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/>
+- [2022 - 8/8 :star:](/2022) 
+<br> <img height=20 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"/>
