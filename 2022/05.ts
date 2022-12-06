@@ -28,8 +28,8 @@ function move(instructions: string[], stacks: string[][]): void {
   for (const line of instructions) {
     const [n, from, to] = parseInstruction(line);
     for (let i = 0; i < n; i++) {
-      const disk = stacks[from - 1].pop();
-      stacks[to - 1].push(disk!);
+      const crate = stacks[from - 1].pop();
+      stacks[to - 1].push(crate!);
     }
   }
 }
