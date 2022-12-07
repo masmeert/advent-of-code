@@ -1,11 +1,11 @@
 function play(guide: string[], scores: Map<string, number[]>): number[] {
-  let myScore = 0;
-  let myScorePart2 = 0;
+  let score = 0;
+  let scoreP2 = 0;
   for (const line of guide) {
-    myScore += scores.get(line)![0];
-    myScorePart2 += scores.get(line)![1];
+    score += scores.get(line)![0];
+    scoreP2 += scores.get(line)![1];
   }
-  return [myScore, myScorePart2];
+  return [score, scoreP2];
 }
 
 const data = await Deno.readTextFile("./inputs/02.txt").then((data) => {
