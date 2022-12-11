@@ -1,7 +1,7 @@
-from copy import deepcopy
-from operator import add, mul, attrgetter
-from math import lcm, prod
 import re
+from copy import deepcopy
+from operator import add, mul
+from math import prod
 
 
 class Monkey:
