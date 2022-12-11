@@ -43,7 +43,7 @@ def simulate(monkeys: list, rounds: int, p2=False):
                 else:
                     monkeys[monkey.if_false].items.append(item)
 
-    a, b = sorted(map(attrgetter("counter"), monkeys), reverse=True)[:2]
+    a, b = sorted(-monkey.counter for monkey in monkeys)[:2]
     return a * b
 
 
