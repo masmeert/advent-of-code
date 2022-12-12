@@ -13,8 +13,8 @@ def find_path(grid: defaultdict, end: tuple):
     distances = defaultdict(lambda: float("inf"))
     distances[end] = 0
     queue = deque([end])
-    p1, p2 = None, None	
-    
+    p1, p2 = None, None
+
     while not p1 or not p2:
         current = queue.popleft()
         for adjacent in adjacents(*current):
@@ -29,7 +29,7 @@ def find_path(grid: defaultdict, end: tuple):
             p2 = distances[current]
 
     return p1, p2
-            
+
 
 if __name__ == "__main__":
     grid = defaultdict(lambda: "Z")
