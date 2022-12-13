@@ -1,4 +1,7 @@
-DATA = [[y.strip() for y in x.strip().split("|")] for x in open("2021/inputs/day08.txt").readlines()]
+DATA = [
+    [y.strip() for y in x.strip().split("|")]
+    for x in open("2021/inputs/day08.txt").readlines()
+]
 
 
 def part_one() -> int:

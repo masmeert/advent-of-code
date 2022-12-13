@@ -46,7 +46,7 @@ def factors(x: int) -> Tuple[int]:
     return tuple(
         sorted(
             x
-            for tup in ([i, x // i] for i in range(1, int(x ** 0.5) + 1) if x % i == 0)
+            for tup in ([i, x // i] for i in range(1, int(x**0.5) + 1) if x % i == 0)
             for x in tup
         )
     )

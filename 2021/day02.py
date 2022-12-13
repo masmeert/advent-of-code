@@ -1,4 +1,6 @@
-DATA = [(move[0], int(value)) for move, value in map(str.split, open("2021/inputs/day02"))]
+DATA = [
+    (move[0], int(value)) for move, value in map(str.split, open("2021/inputs/day02"))
+]
 
 
 def dive(part: int) -> int:
