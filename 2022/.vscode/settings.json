@@ -1,6 +1,3 @@
 {
-  "deno.enable": true,
-  "deno.lint": true,
-  "deno.unstable": true,
   "python.formatting.provider": "black"
 }
