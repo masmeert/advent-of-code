@@ -2,7 +2,7 @@ import re
 
 
 def get_input():
-    global valves, flows, non_null, distances
+    global flows, non_null, distances
     with open("inputs/16.txt") as f:
         lines = [re.split("[\\s=;,]+", line) for line in f.read().splitlines()]
     valves = {x[1]: set(x[10:]) for x in lines}
