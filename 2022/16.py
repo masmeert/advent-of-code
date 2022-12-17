@@ -8,10 +8,10 @@ def get_input():
     valves = {x[1]: set(x[10:]) for x in lines}
     flows = {x[1]: int(x[5]) for x in lines if int(x[5]) != 0}
     non_null = {x: 1 << i for i, x in enumerate(flows)}
-    distances = floyd_marshall(valves)
+    distances = floyd_warshall(valves)
 
 
-def floyd_marshall(valves):
+def floyd_warshall(valves):
     distances = {
         x: {y: 1 if y in valves[x] else float("+inf") for y in valves} for x in valves
     }
