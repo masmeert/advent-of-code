@@ -1,5 +1,8 @@
-def get_input():
-    guide = open("inputs/02.txt").read().split("\n")
+from utils import aoc
+
+
+if __name__ == "__main__":
+    guide = aoc.get_input("02")
     scores = {
         "A X": (4, 3),
         "A Y": (8, 4),
@@ -10,22 +13,6 @@ def get_input():
         "C X": (7, 2),
         "C Y": (2, 6),
         "C Z": (6, 7),
-    }
-
-    return guide, scores
-
-
-def play(guide, scores):
-    score = 0
-    score_part2 = 0
-
-    for line in guide:
-        score += scores[line][0]
-        score_part2 += scores[line][1]
-
-    return score, score_part2
-
-
-if __name__ == "__main__":
-    guide, scores = get_input()
-    print(play(guide, scores))
+    }  # Hardcoded from the input
+    print(sum(scores[line][0] for line in guide))
+    print(sum(scores[line][1] for line in guide))
