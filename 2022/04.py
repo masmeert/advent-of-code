@@ -1,35 +1,48 @@
-def get_input():
-    file = [line.split(",") for line in open("inputs/04.txt").read().split("\n")]
-    for i in range(len(file)):
-        for j in range(len(file[i])):
-            file[i][j] = list(map(int, file[i][j].split("-")))
+from utils import aoc
 
-    return file
+# type aliases
+Bounds = tuple[int, int]
+Pair = tuple[Bounds, Bounds]
 
 
-def part1(pairs):
-    overlap = 0
+def parse_range(range: str):
+    start, end = map(int, range.split("-"))
+
+    return start, end
+
+
+def parse_input(input: list[str]) -> list[Pair]:
+    pairs = []
+    for line in input:
+        ranges = line.split(",")
+        pair = (parse_range(ranges[0]), parse_range(ranges[1]))
+        pairs.append(pair)
+
+    return pairs
+
+
+def part_one(pairs: list[Pair]) -> int:
+    overlaps = 0
     for pair in pairs:
-        a, b = pair[0]
-        c, d = pair[1]
-        if (a <= c and d <= b) or (c <= a and b <= d):
-            overlap += 1
+        if (pair[0][0] <= pair[1][0] and pair[1][1] <= pair[0][1]) or (
+            pair[1][0] <= pair[0][0] and pair[0][1] <= pair[1][1]
+        ):
+            overlaps += 1
 
-    return overlap
+    return overlaps
 
 
-def part2(pairs):
-    overlap = 0
+def part_two(pairs: list[Pair]) -> int:
+    overlaps = 0
     for pair in pairs:
-        a, b = pair[0]
-        c, d = pair[1]
-        if d >= a >= c or b >= c >= a:
-            overlap += 1
+        if not (pair[0][1] < pair[1][0] or pair[1][1] < pair[0][0]):
+            overlaps += 1
 
-    return overlap
+    return overlaps
 
 
 if __name__ == "__main__":
-    pairs = get_input()
-    print(part1(pairs))
-    print(part2(pairs))
+    input = aoc.get_input("04")
+    pairs = parse_input(input)
+    print(part_one(pairs))
+    print(part_two(pairs))
