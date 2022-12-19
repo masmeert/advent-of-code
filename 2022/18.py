@@ -17,7 +17,7 @@ def get_input():
                     pairs += 1
         return cubes
 
- 
+
 def get_nb_sides(coords):
     nb_sides = []
     for delta in DIRECTIONS:
@@ -28,7 +28,8 @@ def get_nb_sides(coords):
         else:
             nb_sides.append(nb)
     return nb_sides
- 
+
+
 def dfs(cubes, start):
     q = [start]
     closed = {start}
@@ -43,6 +44,7 @@ def dfs(cubes, start):
             closed.add(nbr)
     return closed
 
+
 def part2(cubes):
     steam_cells = dfs(cubes, (mini - 1, mini - 1, mini - 1))
     result = 0
@@ -51,6 +53,7 @@ def part2(cubes):
             if nbr in steam_cells:
                 result += 1
     return result
+
 
 if __name__ == "__main__":
     cubes = get_input()
