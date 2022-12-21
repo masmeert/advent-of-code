@@ -1,21 +1,22 @@
+from utils import aoc
+
 DIRECTIONS = ((-1, 0, 0), (1, 0, 0), (0, -1, 0), (0, 1, 0), (0, 0, -1), (0, 0, 1))
 
 
-def get_input():
+def parse_input():
     global mini, maxi, pairs
     mini, maxi, pairs = 1, 10, 0
     cubes = set()
-    with open("inputs/18.txt", "r") as f:
-        for line in f.readlines():
-            coords = tuple(map(int, line.split(",")))
-            for k in coords:
-                mini = min(mini, k)
-                maxi = max(maxi, k)
-            cubes.add(coords)
-            for delta in DIRECTIONS:
-                if tuple(map(sum, zip(coords, delta))) in cubes:
-                    pairs += 1
-        return cubes
+    for line in aoc.get_input("18"):
+        coords = tuple(map(int, line.split(",")))
+        for k in coords:
+            mini = min(mini, k)
+            maxi = max(maxi, k)
+        cubes.add(coords)
+        for delta in DIRECTIONS:
+            if tuple(map(sum, zip(coords, delta))) in cubes:
+                pairs += 1
+    return cubes
 
 
 def get_nb_sides(coords):
@@ -56,6 +57,6 @@ def part2(cubes):
 
 
 if __name__ == "__main__":
-    cubes = get_input()
+    cubes = parse_input()
     print(6 * len(cubes) - 2 * pairs)
     print(part2(cubes))

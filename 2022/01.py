@@ -16,7 +16,7 @@ def rank_elves_by_calories(elves_snacks: list[str]) -> list[int]:
 
 
 if __name__ == "__main__":
-    elves = aoc.get_input("01", "\n\n")
+    elves = aoc.get_input("01", split="\n\n")
     highest = rank_elves_by_calories(elves)
     print("Part 1:", highest[-1])
     print("Part 2:", sum(highest[-3:]))

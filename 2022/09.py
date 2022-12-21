@@ -1,3 +1,5 @@
+from utils import aoc
+
 DIRECTIONS = {
     "R": (1, 0),
     "L": (-1, 0),
@@ -29,6 +31,6 @@ def simulate(motions, rope_len):
 
 
 if __name__ == "__main__":
-    motions = list(map(str.split, open("inputs/09.txt").read().split("\n")))
+    motions = list(map(str.split, aoc.get_input("09")))
     print(simulate(motions, 2))
     print(simulate(motions, 10))

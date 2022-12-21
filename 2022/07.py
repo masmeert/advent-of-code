@@ -1,5 +1,8 @@
+from utils import aoc
+
+
 def get_input():
-    history = open("inputs/07.txt").read().split("\n")
+    history = aoc.get_input("07")
     sizes = {"/": 0}
     path = "/"
     for command in history:

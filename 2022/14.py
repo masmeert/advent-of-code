@@ -1,7 +1,10 @@
-def get_input():
+from utils import aoc
+
+
+def parse_input():
     cave = {}
 
-    for line in open("inputs/14.txt").readlines():
+    for line in aoc.get_input("14"):
         coords = line.split(" -> ")
         for f, t in zip(coords[0::], coords[1::]):
             (fx, fy) = (int(n) for n in f.split(","))
@@ -44,7 +47,7 @@ def add_floor(cave):
 
 
 def simulate(bottom_is_abyss):
-    cave = get_input()
+    cave = parse_input()
 
     if not bottom_is_abyss:
         add_floor(cave)

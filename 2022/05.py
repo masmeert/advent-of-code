@@ -1,8 +1,9 @@
 import re
+from utils import aoc
 
 
 def get_input():
-    instructions = open("inputs/05.txt").read().split("\n")
+    instructions = aoc.get_input("05")
     for i in range(len(instructions)):
         regex = re.compile(r"move (\d+) from (\d+) to (\d+)")
         instructions[i] = list(map(int, regex.search(instructions[i]).groups()))
@@ -33,7 +34,7 @@ def get_top(stacks):
 def move(instructions, stacks):
     for instruction in instructions:
         move, from_stack, to_stack = instruction
-        for i in range(move):
+        for _ in range(move):
             stacks[to_stack - 1].append(stacks[from_stack - 1].pop())
 
 

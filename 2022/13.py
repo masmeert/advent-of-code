@@ -1,4 +1,5 @@
 import json
+from utils import aoc
 from math import prod
 from functools import cmp_to_key as c
 
@@ -19,11 +20,7 @@ def compare(left, right):
 
 
 if __name__ == "__main__":
-    input = [
-        json.loads(line)
-        for line in open("inputs/13.txt").read().splitlines()
-        if len(line)
-    ]
+    input = [json.loads(line) for line in aoc.get_input("13") if len(line)]
 
     p1 = sum(
         i + 1

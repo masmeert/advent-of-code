@@ -1,10 +1,10 @@
 import re
+from utils import aoc
 
 
-def get_input():
+def parse_input():
     global flows, non_null, distances
-    with open("inputs/16.txt") as f:
-        lines = [re.split("[\\s=;,]+", line) for line in f.read().splitlines()]
+    lines = [re.split("[\\s=;,]+", line) for line in aoc.get_input("16")]
     valves = {x[1]: set(x[10:]) for x in lines}
     flows = {x[1]: int(x[5]) for x in lines if int(x[5]) != 0}
     non_null = {x: 1 << i for i, x in enumerate(flows)}
@@ -43,7 +43,7 @@ def visit(valve, budget, state, flow, answer):
 
 
 if __name__ == "__main__":
-    get_input()
+    parse_input()
     p1 = max(visit("AA", 30, 0, 0, {}).values())
     visited = visit("AA", 26, 0, 0, {})
     p2 = max(

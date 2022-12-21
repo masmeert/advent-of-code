@@ -1,3 +1,4 @@
+from utils import aoc
 from collections import defaultdict, deque
 
 
@@ -33,7 +34,7 @@ def find_path(grid: defaultdict, end: tuple):
 
 if __name__ == "__main__":
     grid = defaultdict(lambda: "Z")
-    for y, row in enumerate(open("inputs/12.txt").read().splitlines()):
+    for y, row in enumerate(aoc.get_input("12")):
         for x, char in enumerate(row):
             grid[(x, y)] = char
             if char == "E":

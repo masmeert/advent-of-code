@@ -1,6 +1,4 @@
-def get_input():
-    with open("inputs/20.txt") as f:
-        return f.readlines()
+from utils import aoc
 
 
 def decrypt(nums: list[int], steps: int = 1) -> int:
@@ -18,7 +16,7 @@ def decrypt(nums: list[int], steps: int = 1) -> int:
 
 
 if __name__ == "__main__":
-    file = get_input()
+    file = aoc.get_input("20")
 
     nums = [int(x) for x in file]
     print(decrypt(nums))

@@ -10,7 +10,7 @@ def get_intersection(arrays: list[list]) -> set:
     intersection = set(arrays[0])
     for array in arrays[1:]:
         intersection &= set(array)
-    
+
     return intersection
 
 

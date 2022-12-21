@@ -1,5 +1,6 @@
 import operator
 import sympy
+from utils import aoc
 
 
 OPERATORS = {
@@ -10,7 +11,7 @@ OPERATORS = {
 }
 MONKEYS = {
     x[0]: x[1].split(" ")
-    for x in (line.strip().split(": ") for line in open("inputs/21.txt").readlines())
+    for x in (line.strip().split(": ") for line in aoc.get_input("21"))
 }
 
 

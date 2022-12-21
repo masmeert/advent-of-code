@@ -1,11 +1,11 @@
 import re
 import math
+from utils import aoc
 from collections import deque
 
 
-def get_input():
-    with open("inputs/19.txt", "r") as f:
-        file = f.read().splitlines()
+def parse_input():
+    file = aoc.get_input("19")
 
     blueprints = []
     for line in file:
@@ -158,7 +158,7 @@ def solve(blueprint, time):
 
 
 if __name__ == "__main__":
-    blueprints = get_input()
+    blueprints = parse_input()
 
     print(sum(blueprint["id"] * solve(blueprint, 24) for blueprint in blueprints))
     print(math.prod(solve(blueprints[i], 32) for i in range(3)))

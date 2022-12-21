@@ -1,4 +1,5 @@
 import re
+from utils import aoc
 from copy import deepcopy
 from operator import add, mul
 from math import prod
@@ -49,7 +50,7 @@ def simulate(monkeys: list, rounds: int, p2=False):
 
 if __name__ == "__main__":
     regex = re.compile(r"\d+")
-    input = open("inputs/11.txt").read().split("\n\n")
+    input = aoc.get_input("11", split="\n\n")
     monkeys = []
     for block in input:
         data = block.split("\n")

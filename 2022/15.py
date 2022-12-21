@@ -1,11 +1,11 @@
 import re
+from utils import aoc
 
 
 def parse_input():
     disc = []
 
-    with open("inputs/15.txt") as f:
-        file = f.read().split("\n")
+    file = aoc.get_input("15")
 
     sensors = {}
     for line in file:
