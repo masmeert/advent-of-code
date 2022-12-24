@@ -33,19 +33,15 @@ def travel(blizzards: list, start: tuple, end: tuple, step: int = 0) -> int:
         }
 
         queue.add(start)
-        next_queue = set()
+        next = set()
         for i, j in queue:
             if (i, j) == end:
                 return step
             for ni, nj in (i, j), (i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1):
-                if not 0 <= ni < N:
+                if not 0 <= ni < N or not 0 <= nj < M or (ni, nj) in forbidden:
                     continue
-                if not 0 <= nj < M:
-                    continue
-                if (ni, nj) in forbidden:
-                    continue
-                next_queue.add((ni, nj))
-        queue = next_queue
+                next.add((ni, nj))
+        queue = next
 
 
 if __name__ == "__main__":
