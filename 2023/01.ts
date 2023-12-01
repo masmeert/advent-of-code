@@ -1,3 +1,5 @@
+import { sum } from "./utils/array.ts";
+
 const DIGITS_TABLE: { [key: string]: string } = {
   on: "1",
   tw: "2",
@@ -23,13 +25,7 @@ function recoverCalibrationValue(calibration: string, p2: boolean): number {
 }
 
 const input = Deno.readTextFileSync("./inputs/01.txt").split("\n");
-const part1 = input.reduce(
-  (acc, i) => acc + recoverCalibrationValue(i, false),
-  0
-);
-const part2 = input.reduce(
-  (acc, i) => acc + recoverCalibrationValue(i, true),
-  0
-);
+const part1 = sum(input.map((l) => recoverCalibrationValue(l, false)));
+const part2 = sum(input.map((l) => recoverCalibrationValue(l, true)));
 
 console.log(`Part 1: ${part1}\nPart 2: ${part2}\n`);
