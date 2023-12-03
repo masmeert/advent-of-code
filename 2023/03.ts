@@ -78,31 +78,23 @@ export function findMissingParts(schematic: string[]): number[] {
 }
 
 export function findGears(schematic: string[]): number[] {
-  const valids: number[] = [];
-  const gears = [];
-
-  for (let y = 0; y < schematic.length; y++) {
-    for (let x = 0; x < schematic[y].length; x++) {
-      if (schematic[y][x] === "*") {
-        gears.push([y, x]);
-      }
-    }
-  }
-
-  for (const [y, x] of gears) {
-    const ns = [
-      ...new Set(
-        getAdj(y, x)
+  return schematic.flatMap((line, y) =>
+    line.split("").flatMap((char, x) => {
+      if (char === "*") {
+        const neighbours = getAdj(y, x)
           .map((a) => findNumber(schematic, a))
           .filter((n) => !!n)
-          .map((n) => n!)
-      ),
-    ].map(Number);
-    if (ns.length === 2) {
-      valids.push(ns[0] * ns[1]);
-    }
-  }
-  return valids;
+          .map((n) => n!);
+
+        const uniques = [...new Set(neighbours)].map(Number);
+
+        if (uniques.length === 2) {
+          return uniques[0] * uniques[1];
+        }
+      }
+      return [];
+    })
+  );
 }
 
 const schematic = Deno.readTextFileSync("./inputs/03.txt").split("\n");
