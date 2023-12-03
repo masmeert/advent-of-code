@@ -1,10 +1,10 @@
 import { sum } from "./utils/array.ts";
 
-export function isCharValid(char: string): boolean {
+function isCharValid(char: string): boolean {
   return (char >= "0" && char <= "9") || char === ".";
 }
 
-export function getAdj(y: number, x: number): [number, number][] {
+function getAdj(y: number, x: number): [number, number][] {
   return [
     [y - 1, x - 1],
     [y - 1, x],
