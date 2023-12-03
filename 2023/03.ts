@@ -45,7 +45,7 @@ function findNumber(
   return seq;
 }
 
-export function findMissingParts(schematic: string[]): number[] {
+function findMissingParts(schematic: string[]): number[] {
   const valids = [];
   for (let y = 0; y < schematic.length; y++) {
     const line = schematic[y];
@@ -77,7 +77,7 @@ export function findMissingParts(schematic: string[]): number[] {
   return valids;
 }
 
-export function findGears(schematic: string[]): number[] {
+function findGears(schematic: string[]): number[] {
   return schematic.flatMap((line, y) =>
     line.split("").flatMap((char, x) => {
       if (char === "*") {
