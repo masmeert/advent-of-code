@@ -86,8 +86,7 @@ export function findGears(schematic: string[]): number[] {
           .filter((n) => !!n)
           .map((n) => n!);
 
-        const uniques = [...new Set(neighbours)].map(Number);
-
+        const uniques = Array.from(new Set(neighbours), Number);
         if (uniques.length === 2) {
           return uniques[0] * uniques[1];
         }
