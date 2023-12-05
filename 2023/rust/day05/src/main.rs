@@ -23,7 +23,7 @@ impl From<String> for Converter {
         let parts = input
             .trim()
             .split_whitespace()
-            .map(|s| s.parse::<usize>().unwrap())
+            .map(|seed| seed.parse::<usize>().unwrap())
             .collect::<Vec<usize>>();
 
         Self {
@@ -42,7 +42,7 @@ impl CategoryMapper {
     fn convert(&self, input: usize) -> usize {
         self.conversions
             .iter()
-            .find_map(|t| t.apply(input))
+            .find_map(|converter| converter.apply(input))
             .unwrap_or_else(|| input)
     }
 }
@@ -62,7 +62,7 @@ fn parse_seeds(line: &str) -> Vec<usize> {
         .nth(1)
         .unwrap()
         .split_whitespace()
-        .map(|x| x.parse::<usize>().unwrap())
+        .map(|s| s.parse::<usize>().unwrap())
         .collect()
 }
 
