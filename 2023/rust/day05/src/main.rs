@@ -78,7 +78,7 @@ fn read_input() -> (Vec<usize>, Vec<CategoryMapper>) {
     (seeds, maps)
 }
 
-fn calculate_transformation(seed: usize, maps: &[CategoryMapper]) -> usize {
+fn calculate_conversion(seed: usize, maps: &[CategoryMapper]) -> usize {
     let mut transformed = seed;
     for map in maps {
         transformed = map.convert(transformed);
@@ -90,7 +90,7 @@ fn part_one() -> Option<usize> {
     let (seeds, maps) = read_input();
     seeds
         .iter()
-        .map(|&seed| calculate_transformation(seed, &maps))
+        .map(|&seed| calculate_conversion(seed, &maps))
         .min()
 }
 
@@ -102,7 +102,7 @@ fn part_two() -> Option<usize> {
         .flatten()
         .collect::<Vec<usize>>()
         .par_iter()
-        .map(|&seed| calculate_transformation(seed, &maps))
+        .map(|&seed| calculate_conversion(seed, &maps))
         .min()
 }
 
