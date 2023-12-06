@@ -88,10 +88,7 @@ fn convert_seed(seed: usize, maps: &[CategoryMapper]) -> usize {
 
 fn part_one() -> Option<usize> {
     let (seeds, maps) = read_input();
-    seeds
-        .iter()
-        .map(|&seed| convert_seed(seed, &maps))
-        .min()
+    seeds.iter().map(|&seed| convert_seed(seed, &maps)).min()
 }
 
 fn part_two() -> Option<usize> {
