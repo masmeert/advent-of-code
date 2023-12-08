@@ -68,6 +68,7 @@ def part_two(instructions: str, node_maps: Graph) -> int:
     return math.lcm(*all_steps)
 
 
-ins, nodes = read_input("inputs/08.txt")
-print(part_one(ins, nodes))
-print(part_two(ins, nodes))
+if __name__ == "__main__":
+    ins, nodes = read_input("inputs/08.txt")
+    print(part_one(ins, nodes))
+    print(part_two(ins, nodes))
