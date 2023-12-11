@@ -34,7 +34,7 @@ def move(galaxy: Node, older=False):
 
 if __name__ == "__main__":
     expanded_universe = [move(galaxy) for galaxy in GRID]
-    print(distances(expanded_universe))
+    print(sum(distances(expanded_universe)))
 
     expanded_universe = [move(galaxy, True) for galaxy in GRID]
-    print(distances(expanded_universe))
+    print(sum(distances(expanded_universe)))
