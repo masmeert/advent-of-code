@@ -1,7 +1,7 @@
 from functools import lru_cache
 
 
-def read_input(filename: str) -> tuple[str, tuple[int]]:
+def read_input(filename: str) -> list[tuple[str, tuple[int]]]:
     records = []
     with open(filename, "r") as f:
         input = f.read().splitlines()
