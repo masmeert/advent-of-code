@@ -16,13 +16,12 @@ def part_two(instructions: list[str, str, str]) -> int:
     enabled = True
     total = 0
     for token, x, y in instructions:
-        match token:
-            case _ if "do()" in token:
-                enabled = True
-            case _ if "don't()" in token:
-                enabled = False
-            case _ if "mul" in token and enabled:
-                total += int(x) * int(y)
+        if "do()" in token:
+            enabled = True
+        elif "don't()" in token:
+            enabled = False
+        elif "mul" in token and enabled:
+            total += int(x) * int(y)
     return total
 
 
