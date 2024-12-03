@@ -1,5 +1,6 @@
 import re
 
+
 def parse_memory() -> list[str, str, str]:
     pattern = r"(mul\((\d{1,3}),(\d{1,3})\)|do\(\)|don't\(\))"
     with open(f"inputs/03.txt", "r") as f:
