@@ -1,3 +1,6 @@
+# All credit for this module goes to:
+# https://github.com/Eoic
+
 defmodule Input do
   defp build_path(cwd, path) do
     cwd
