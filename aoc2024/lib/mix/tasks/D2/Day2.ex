@@ -22,11 +22,13 @@ defmodule Mix.Tasks.Day2 do
     Enum.chunk_every(list, 2, 1, :discard)
   end
 
-  defp is_monotonic?(list, comparator),
-    do: Enum.all?(pairs(list), fn [a, b] -> comparator.(a, b) end)
+  defp is_monotonic?(list, comparator) do
+    Enum.all?(pairs(list), fn [a, b] -> comparator.(a, b) end)
+  end
 
-  defp valid_deltas?(list),
-    do: Enum.all?(pairs(list), fn [a, b] -> abs(b - a) in 1..3 end)
+  defp valid_deltas?(list) do
+    Enum.all?(pairs(list), fn [a, b] -> abs(b - a) in 1..3 end)
+  end
 
   defp is_safe?(list) do
     (is_monotonic?(list, &(&1 < &2)) or is_monotonic?(list, &(&1 > &2))) and valid_deltas?(list)
