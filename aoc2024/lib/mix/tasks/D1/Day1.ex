@@ -6,8 +6,11 @@ defmodule Mix.Tasks.Day1 do
   @input "input.txt"
 
   defp parse_line(line) do
-    [a, b] = line |> String.trim() |> String.split()
-    {String.to_integer(a), String.to_integer(b)}
+    line
+    |> String.trim()
+    |> String.split()
+    |> Enum.map(&String.to_integer/1)
+    |> List.to_tuple()
   end
 
   defp parse_input do
@@ -28,9 +31,7 @@ defmodule Mix.Tasks.Day1 do
   defp part_two({left, right}) do
     rfreq = Enum.frequencies(right)
 
-    Enum.reduce(left, 0, fn a, acc ->
-      acc + a * Map.get(rfreq, a, 0)
-    end)
+    Enum.reduce(left, 0, &(&2 + &1 * Map.get(rfreq, &1, 0)))
   end
 
   def run(_) do

@@ -16,40 +16,32 @@ defmodule Mix.Tasks.Day2 do
     __ENV__.file
     |> Input.read_lines(@input)
     |> Enum.map(&parse_line/1)
-    |> Enum.to_list()
   end
 
-  defp is_monotonic?(list, comparator) do
+  defp pairs(list) do
     Enum.chunk_every(list, 2, 1, :discard)
-    |> Enum.all?(fn [a, b] -> comparator.(a, b) end)
   end
 
-  defp valid_deltas?(list) do
-    Enum.chunk_every(list, 2, 1, :discard)
-    |> Enum.all?(fn [a, b] -> abs(b - a) in 1..3 end)
-  end
+  defp is_monotonic?(list, comparator),
+    do: Enum.all?(pairs(list), fn [a, b] -> comparator.(a, b) end)
+
+  defp valid_deltas?(list),
+    do: Enum.all?(pairs(list), fn [a, b] -> abs(b - a) in 1..3 end)
 
   defp is_safe?(list) do
-    (is_monotonic?(list, &Kernel.</2) or is_monotonic?(list, &Kernel.>/2)) and valid_deltas?(list)
+    (is_monotonic?(list, &(&1 < &2)) or is_monotonic?(list, &(&1 > &2))) and valid_deltas?(list)
   end
 
   defp is_safe_with_dampener?(list) do
-    Enum.with_index(list)
-    |> Enum.any?(fn {_, index} ->
-      is_safe?(List.delete_at(list, index))
-    end)
+    Enum.any?(0..(length(list) - 1), &is_safe?(List.delete_at(list, &1)))
   end
 
   def part_one(data) do
-    data
-    |> Enum.filter(&is_safe?/1)
-    |> Enum.count()
+    Enum.count(data, &is_safe?/1)
   end
 
   def part_two(data) do
-    data
-    |> Enum.filter(&is_safe_with_dampener?/1)
-    |> Enum.count()
+    Enum.count(data, &is_safe_with_dampener?/1)
   end
 
   def run(_) do

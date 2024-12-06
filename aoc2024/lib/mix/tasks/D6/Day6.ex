@@ -5,13 +5,12 @@ defmodule Mix.Tasks.Day6 do
 
   @input "input.txt"
 
-  defp direction_to_int("^"), do: 0
-  defp direction_to_int(">"), do: 1
-  defp direction_to_int("v"), do: 2
-  defp direction_to_int("<"), do: 3
+  defp direction_to_int(dir) do
+    %{"^" => 0, ">" => 1, "v" => 2, "<" => 3}[dir]
+  end
 
-  defp calculate_next_position({x, y}, direction) do
-    case direction do
+  defp calculate_next_position({x, y}, dir) do
+    case dir do
       0 -> {x, y - 1}
       1 -> {x + 1, y}
       2 -> {x, y + 1}
@@ -20,56 +19,52 @@ defmodule Mix.Tasks.Day6 do
   end
 
   defp parse_input do
-    {grid, start} =
+    lines =
       __ENV__.file
       |> Input.read_lines(@input)
-      |> Enum.with_index()
-      |> Enum.reduce({%{}, nil}, fn {line, y}, {grid, start} ->
-        line
-        |> String.graphemes()
-        |> Enum.with_index()
-        |> Enum.reduce({grid, start}, fn
-          {char, x}, {grid, _} when char in ["^", "v", "<", ">"] ->
-            {Map.put(grid, {x, y}, "."), {{x, y}, direction_to_int(char)}}
 
-          {char, x}, {grid, start} ->
-            {Map.put(grid, {x, y}, char), start}
-        end)
-      end)
+    {grid, start} =
+      for {line, y} <- Enum.with_index(lines),
+          {char, x} <- Enum.with_index(String.graphemes(line)),
+          reduce: {%{}, nil} do
+        {g, s} ->
+          if char in ~w(^ > v <) do
+            {Map.put(g, {x, y}, "."), {{x, y}, direction_to_int(char)}}
+          else
+            {Map.put(g, {x, y}, char), s}
+          end
+      end
 
     {Map.keys(grid), grid, start}
   end
 
   defp simulate_movement({grid_points, grid, {start_pos, start_dir}}, obstacle \\ nil) do
-    bounds = {
-      grid_points |> Enum.map(&elem(&1, 0)) |> Enum.min_max(),
-      grid_points |> Enum.map(&elem(&1, 1)) |> Enum.min_max()
-    }
+    {x_min, x_max} = grid_points |> Enum.map(&elem(&1, 0)) |> Enum.min_max()
+    {y_min, y_max} = grid_points |> Enum.map(&elem(&1, 1)) |> Enum.min_max()
 
     move(
-      {grid, bounds},
+      {grid, {x_min, x_max, y_min, y_max}},
       {start_pos, start_dir},
       MapSet.new([start_pos]),
-      MapSet.new([]),
+      MapSet.new(),
       obstacle
     )
   end
 
-  defp move({grid, {{min_x, max_x}, {min_y, max_y}}} = env, {pos, dir}, visited, states, obstacle) do
+  defp move({grid, {min_x, max_x, min_y, max_y}} = env, {pos, dir}, visited, states, obstacle) do
     next_pos = calculate_next_position(pos, dir)
-    {x, y} = next_pos
     current_state = {pos, dir}
+    {x, y} = next_pos
 
     cond do
-      MapSet.member?(states, current_state) ->
+      current_state in states ->
         {:loop_detected, visited}
 
       x < min_x or x > max_x or y < min_y or y > max_y ->
         {:out_of_bounds, visited}
 
       next_pos == obstacle or Map.get(grid, next_pos, "#") == "#" ->
-        next_dir = rem(dir + 1, 4)
-        move(env, {pos, next_dir}, visited, MapSet.put(states, current_state), obstacle)
+        move(env, {pos, rem(dir + 1, 4)}, visited, MapSet.put(states, current_state), obstacle)
 
       true ->
         move(
@@ -89,12 +84,10 @@ defmodule Mix.Tasks.Day6 do
     |> MapSet.size()
   end
 
-  defp part_two(input) do
-    {_points, grid, {start_pos, _}} = input
-
+  defp part_two({_, grid, {start_pos, _}} = input) do
     grid
-    |> Map.filter(fn {pos, value} -> value == "." and pos != start_pos end)
-    |> Map.keys()
+    |> Enum.filter(fn {pos, v} -> v == "." and pos != start_pos end)
+    |> Enum.map(&elem(&1, 0))
     |> Task.async_stream(
       fn pos ->
         case simulate_movement(input, pos) do
@@ -104,7 +97,7 @@ defmodule Mix.Tasks.Day6 do
       end,
       max_concurrency: System.schedulers_online() * 2
     )
-    |> Enum.map(fn {:ok, result} -> result end)
+    |> Enum.map(&elem(&1, 1))
     |> Enum.sum()
   end
 
