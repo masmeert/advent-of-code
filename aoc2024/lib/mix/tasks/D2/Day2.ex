@@ -1,4 +1,10 @@
-defmodule DayTwo do
+defmodule Mix.Tasks.Day2 do
+  use Mix.Task
+  require Timer
+  require Input
+
+  @input "input.txt"
+
   defp parse_line(line) do
     line
     |> String.trim()
@@ -6,10 +12,10 @@ defmodule DayTwo do
     |> Enum.map(&String.to_integer/1)
   end
 
-  defp read_input do
-    "./inputs/02.txt"
-    |> File.stream!()
-    |> Stream.map(&parse_line/1)
+  defp parse_input do
+    __ENV__.file
+    |> Input.read_lines(@input)
+    |> Enum.map(&parse_line/1)
     |> Enum.to_list()
   end
 
@@ -34,18 +40,23 @@ defmodule DayTwo do
     end)
   end
 
-  def part_one() do
-    read_input()
+  def part_one(data) do
+    data
     |> Enum.filter(&is_safe?/1)
     |> Enum.count()
   end
 
-  def part_two() do
-    read_input()
+  def part_two(data) do
+    data
     |> Enum.filter(&is_safe_with_dampener?/1)
     |> Enum.count()
   end
-end
 
-IO.inspect(DayTwo.part_one())
-IO.inspect(DayTwo.part_two())
+  def run(_) do
+    data = Timer.measure(fn -> parse_input() end, "Parsing")
+    p1_result = Timer.measure(fn -> part_one(data) end, "Part 1")
+    p2_result = Timer.measure(fn -> part_two(data) end, "Part 2")
+    IO.puts(p1_result)
+    IO.puts(p2_result)
+  end
+end

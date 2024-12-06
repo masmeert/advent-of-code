@@ -1,9 +1,28 @@
-defmodule DaySix do
-  def parse_input(file \\ "./inputs/06.txt") do
+defmodule Mix.Tasks.Day6 do
+  use Mix.Task
+  require Timer
+  require Input
+
+  @input "input.txt"
+
+  defp direction_to_int("^"), do: 0
+  defp direction_to_int(">"), do: 1
+  defp direction_to_int("v"), do: 2
+  defp direction_to_int("<"), do: 3
+
+  defp calculate_next_position({x, y}, direction) do
+    case direction do
+      0 -> {x, y - 1}
+      1 -> {x + 1, y}
+      2 -> {x, y + 1}
+      3 -> {x - 1, y}
+    end
+  end
+
+  defp parse_input do
     {grid, start} =
-      file
-      |> File.read!()
-      |> String.split("\n", trim: true)
+      __ENV__.file
+      |> Input.read_lines(@input)
       |> Enum.with_index()
       |> Enum.reduce({%{}, nil}, fn {line, y}, {grid, start} ->
         line
@@ -21,21 +40,7 @@ defmodule DaySix do
     {Map.keys(grid), grid, start}
   end
 
-  def direction_to_int("^"), do: 0
-  def direction_to_int(">"), do: 1
-  def direction_to_int("v"), do: 2
-  def direction_to_int("<"), do: 3
-
-  def calculate_next_position({x, y}, direction) do
-    case direction do
-      0 -> {x, y - 1}
-      1 -> {x + 1, y}
-      2 -> {x, y + 1}
-      3 -> {x - 1, y}
-    end
-  end
-
-  def simulate_movement({grid_points, grid, {start_pos, start_dir}}, obstacle \\ nil) do
+  defp simulate_movement({grid_points, grid, {start_pos, start_dir}}, obstacle \\ nil) do
     bounds = {
       grid_points |> Enum.map(&elem(&1, 0)) |> Enum.min_max(),
       grid_points |> Enum.map(&elem(&1, 1)) |> Enum.min_max()
@@ -50,7 +55,7 @@ defmodule DaySix do
     )
   end
 
-  def move({grid, {{min_x, max_x}, {min_y, max_y}}} = env, {pos, dir}, visited, states, obstacle) do
+  defp move({grid, {{min_x, max_x}, {min_y, max_y}}} = env, {pos, dir}, visited, states, obstacle) do
     next_pos = calculate_next_position(pos, dir)
     {x, y} = next_pos
     current_state = {pos, dir}
@@ -77,14 +82,14 @@ defmodule DaySix do
     end
   end
 
-  def part_one(input \\ parse_input()) do
+  defp part_one(input) do
     input
     |> simulate_movement()
     |> elem(1)
     |> MapSet.size()
   end
 
-  def part_two(input \\ parse_input()) do
+  defp part_two(input) do
     {_points, grid, {start_pos, _}} = input
 
     grid
@@ -102,7 +107,12 @@ defmodule DaySix do
     |> Enum.map(fn {:ok, result} -> result end)
     |> Enum.sum()
   end
-end
 
-IO.inspect(DaySix.part_one())
-IO.inspect(DaySix.part_two())
+  def run(_) do
+    data = Timer.measure(fn -> parse_input() end, "Parsing")
+    p1_result = Timer.measure(fn -> part_one(data) end, "Part 1")
+    p2_result = Timer.measure(fn -> part_two(data) end, "Part 2")
+    IO.puts(p1_result)
+    IO.puts(p2_result)
+  end
+end
