@@ -9,4 +9,6 @@ def get_input(day: str, split: str = "\n") -> list:
         list: the input for the given day.
     """
     with open(f"inputs/{day}.txt", "r") as f:
+        if split is None:
+            return f.read()
         return f.read().split(split)
