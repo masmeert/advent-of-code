@@ -1,4 +1,5 @@
 from collections import deque
+
 from utils import aoc
 
 
@@ -12,14 +13,8 @@ def read_input():
     return disk
 
 
-def get_checksum(disk):
-    free_space = deque(i for i, v in enumerate(disk) if v == -1)
-    updated_disk = disk[:]
-    for i in range(len(disk) - 1, -1, -1):
-        if disk[i] != -1 and free_space and free_space[0] < i:
-            empty_index = free_space.popleft()
-            updated_disk[empty_index], updated_disk[i] = updated_disk[i], -1
-    return sum(i * n for i, n in enumerate(updated_disk) if n != -1)
+def checksum(disk):
+    return sum(i * n for i, n in enumerate(disk) if n != -1)
 
 
 def find_fragments(disk):
@@ -34,7 +29,17 @@ def find_fragments(disk):
     return occupied, empty
 
 
-def defragment(disk):
+def part_one(disk):
+    free_space = deque(i for i, v in enumerate(disk) if v == -1)
+    updated_disk = disk[:]
+    for i in range(len(disk) - 1, -1, -1):
+        if disk[i] != -1 and free_space and free_space[0] < i:
+            empty_index = free_space.popleft()
+            updated_disk[empty_index], updated_disk[i] = updated_disk[i], -1
+    return checksum(updated_disk)
+
+
+def part_two(disk):
     defragmented = disk[:]
     occupied, empty = find_fragments(disk)
     for start, end in occupied[::-1]:
@@ -52,10 +57,10 @@ def defragment(disk):
                 if empty_block[0] > empty_block[1]:
                     empty.remove(empty_block)
                 break
-    return sum(i * n for i, n in enumerate(defragmented) if n != -1)
+    return checksum(defragmented)
 
 
 if __name__ == "__main__":
     diskmap = read_input()
-    print(get_checksum(diskmap))
-    print(defragment(diskmap))
+    print(part_one(diskmap))
+    print(part_two(diskmap))
