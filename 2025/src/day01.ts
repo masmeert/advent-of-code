@@ -32,7 +32,7 @@ function countCrossings(
 	target: number,
 	instructions: number[],
 ): number {
-	const _count = (instruction: number) =>
+	const _count = (instruction: number): number =>
 		pipe(
 			A.range(1, Math.abs(instruction)),
 			A.filter((j) => (start + Math.sign(instruction) * j) % 100 === target),
@@ -48,7 +48,7 @@ function countCrossings(
 	).count;
 }
 
-function program() {
+function main() {
 	return Effect.gen(function* () {
 		const instructions = yield* parseInput();
 		yield* Effect.log(
@@ -58,4 +58,4 @@ function program() {
 	});
 }
 
-Effect.runPromise(program());
+Effect.runPromise(main());
