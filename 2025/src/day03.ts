@@ -44,4 +44,4 @@ function main() {
 	});
 }
 
-Effect.runPromise(main());
+Effect.runPromise(main()).catch(console.error);
