@@ -60,7 +60,9 @@ const part2 = (input: string) =>
 	pipe(
 		toColumns(input),
 		A.reduce({ op: "+" as Operator, expr: "" }, ({ op, expr }, col) => {
-			const nextOp = isOperator(col.at(-1) ?? "") ? (col.at(-1) as Operator) : op;
+			const nextOp = isOperator(col.at(-1) ?? "")
+				? (col.at(-1) as Operator)
+				: op;
 			const digits = pipe(col, A.dropRight(1), A.join(""), S.trim);
 			return {
 				op: nextOp,
