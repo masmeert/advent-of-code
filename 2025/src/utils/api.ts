@@ -14,6 +14,10 @@ export function getAocInput({ day, year }: { day: number; year: number }) {
 			`https://adventofcode.com/${year}/day/${day}/input`,
 		).pipe(
 			HttpClientRequest.setHeader("Cookie", `session=${session}`),
+			HttpClientRequest.setHeader(
+				"User-Agent",
+				"github.com/masmeert/advent-of-code",
+			),
 			client.execute,
 		);
 
