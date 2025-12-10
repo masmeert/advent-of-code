@@ -18,6 +18,7 @@
 	},
 	"dependencies": {
 		"@effect/platform": "^0.93.6",
-		"effect": "^3.19.8"
+		"effect": "^3.19.8",
+		"z3-solver": "^4.15.4"
 	}
 }
